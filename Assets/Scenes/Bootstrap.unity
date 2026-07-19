@@ -480,6 +480,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 915590469}
+  - component: {fileID: 915590470}
   m_Layer: 0
   m_Name: UIManager
   m_TagString: Untagged
@@ -502,6 +503,24 @@ Transform:
   m_Children: []
   m_Father: {fileID: 289866888}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &915590470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 915590468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bc637d93ed5a0f4fa3c1a5fd9716160, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  settingPopupPrefab: {fileID: 0}
+  recordPopupPrefab: {fileID: 0}
+  tapToStartPopupPrefab: {fileID: 0}
+  gameOverPopupPrefab: {fileID: 0}
+  overlay: {fileID: 0}
+  popupContainer: {fileID: 0}
 --- !u!1 &1298760727
 GameObject:
   m_ObjectHideFlags: 0
