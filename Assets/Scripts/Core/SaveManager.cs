@@ -5,7 +5,7 @@ using UnityEngine;
 /// <summary>
 /// Quan ly doc/ghi du lieu game xuong file save.json.
 /// Ghi ngay moi khi co thay doi (an toan neu app crash).
-/// Luu 3 thu: high score, 10 luot choi gan nhat, cai dat am luong.
+/// Luu 3 thu: high score, 10 luot choi gan nhat, cai dat am luong (Music / SFX).
 /// </summary>
 public class SaveManager : Singleton<SaveManager>
 {
@@ -90,24 +90,22 @@ public class SaveManager : Singleton<SaveManager>
 
     /// <summary>
     /// Goi khi nguoi choi chinh volume trong popup Setting.
-    /// SoundManager goi ham nay de luu 3 muc am luong.
+    /// SoundManager goi ham nay de luu 2 muc am luong: Music / SFX.
     /// </summary>
-    public void SaveSettings(float music, float sfx, float ambient)
+    public void SaveSettings(float music, float sfx)
     {
         _data.musicVolume = music;
         _data.sfxVolume = sfx;
-        _data.ambientVolume = ambient;
         Save();
     }
 
     /// <summary>
     /// SoundManager goi luc khoi dong de doc lai volume da luu.
-    /// Tra ve 3 gia tri qua tham so 'out' (khong can tao class rieng).
+    /// Tra ve 2 gia tri qua tham so 'out' (khong can tao class rieng).
     /// </summary>
-    public void LoadSettings(out float music, out float sfx, out float ambient)
+    public void LoadSettings(out float music, out float sfx)
     {
         music = _data.musicVolume;
         sfx = _data.sfxVolume;
-        ambient = _data.ambientVolume;
     }
 }
