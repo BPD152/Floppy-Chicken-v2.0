@@ -6,7 +6,6 @@ using UnityEngine;
 public enum PopupType
 {
     Setting,
-    Record,
     TapToStart,
     GameOver
 }
@@ -20,7 +19,6 @@ public class UIManager : Singleton<UIManager>
 {
     [Header("Popup Prefabs (keo tung prefab vao day)")]
     [SerializeField] private GameObject settingPopupPrefab;
-    [SerializeField] private GameObject recordPopupPrefab;
     [SerializeField] private GameObject tapToStartPopupPrefab;
     [SerializeField] private GameObject gameOverPopupPrefab;
 
@@ -70,7 +68,6 @@ public class UIManager : Singleton<UIManager>
         switch (type)
         {
             case PopupType.Setting:    return settingPopupPrefab;
-            case PopupType.Record:     return recordPopupPrefab;
             case PopupType.TapToStart: return tapToStartPopupPrefab;
             case PopupType.GameOver:   return gameOverPopupPrefab;
             default:                   return null;
