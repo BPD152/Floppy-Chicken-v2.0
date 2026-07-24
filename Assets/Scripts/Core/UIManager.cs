@@ -14,6 +14,7 @@ public enum PopupType
 /// Sinh & huy popup vao PopupContainer. Moi luc chi 1 popup.
 /// Overlay den dung chung: bat khi co popup, tat khi dong.
 /// Overlay phai nam TREN PopupContainer trong Hierarchy de popup ve de len overlay.
+/// UIManager quyet dinh popup nao dung animation nao (xem GetAnim).
 /// </summary>
 public class UIManager : Singleton<UIManager>
 {
@@ -23,20 +24,35 @@ public class UIManager : Singleton<UIManager>
     [SerializeField] private GameObject gameOverPopupPrefab;
 
     [Header("Scene References")]
-    [SerializeField] private GameObject overlay;            // tam den dung chung
-    [SerializeField] private Transform popupContainer;      // noi Instantiate popup
+    [SerializeField] private GameObject overlay;         // tam den dung chung
+    [SerializeField] private Transform popupContainer;   // noi Instantiate popup
 
     // Popup dang mo (null = khong co popup nao).
     private GameObject currentPopup;
 
+    // Kieu animation cua popup dang mo - nho de luc dong dung dung kieu.
+    private PopupAnim currentAnim;
+
+    protected override void Awake()
+    {
+        base.Awake();                       // Singleton + DontDestroyOnLoad
+
+        if (overlay != null)
+            overlay.SetActive(false);       // dam bao luon tat luc khoi dong
+    }
+
     // ==================== API ====================
 
-    /// <summary> Mo 1 popup theo loai. Neu dang co popup khac -> dong truoc. </summary>
+    /// <summary> Mo 1 popup theo loai. Neu dang co popup khac -> huy ngay khong animation. </summary>
     public void OpenPopup(PopupType type)
     {
         // Dong popup cu (neu co) truoc khi mo cai moi -> luon chi 1 popup.
         if (currentPopup != null)
+        {
+            LeanTween.cancel(currentPopup);
             Destroy(currentPopup);
+            currentPopup = null;
+        }
 
         GameObject prefab = GetPrefab(type);
         if (prefab == null)
@@ -45,19 +61,46 @@ public class UIManager : Singleton<UIManager>
             return;
         }
 
-        overlay.SetActive(true);                              // bat nen toi
+        overlay.SetActive(true);                             // bat nen toi
         currentPopup = Instantiate(prefab, popupContainer);  // sinh popup vao container
+        currentAnim = GetAnim(type);                         // chot kieu animation
+
+        var animator = currentPopup.GetComponent<PopupAnimator>();
+        if (animator == null)
+            animator = currentPopup.AddComponent<PopupAnimator>();   // tu gan luc runtime
+
+        animator.PlayOpen(currentAnim);
     }
 
-    /// <summary> Dong popup dang mo, tat nen toi. </summary>
+    /// <summary> Dong popup dang mo (co animation), tat nen toi khi animation xong. </summary>
     public void ClosePopup()
     {
-        if (currentPopup != null)
+        if (currentPopup == null)
         {
-            Destroy(currentPopup);
-            currentPopup = null;
+            overlay.SetActive(false);
+            return;
         }
-        overlay.SetActive(false);                            // tat nen toi
+
+        // Luu lai truoc khi clear, vi callback chay sau vai frame.
+        GameObject closing = currentPopup;
+        PopupAnim closingAnim = currentAnim;
+
+        currentPopup = null;                 // clear ngay de tranh double-close
+
+        var animator = closing.GetComponent<PopupAnimator>();
+        if (animator != null)
+        {
+            animator.PlayClose(closingAnim, () =>
+            {
+                if (closing != null) Destroy(closing);
+                overlay.SetActive(false);
+            });
+        }
+        else
+        {
+            Destroy(closing);
+            overlay.SetActive(false);
+        }
     }
 
     // ==================== NOI BO ====================
@@ -71,6 +114,18 @@ public class UIManager : Singleton<UIManager>
             case PopupType.TapToStart: return tapToStartPopupPrefab;
             case PopupType.GameOver:   return gameOverPopupPrefab;
             default:                   return null;
+        }
+    }
+
+    // Anh xa PopupType -> kieu animation. Sua o day, khong sua trong prefab.
+    private PopupAnim GetAnim(PopupType type)
+    {
+        switch (type)
+        {
+            case PopupType.Setting:    return PopupAnim.Bounce;
+            case PopupType.TapToStart: return PopupAnim.Fade;
+            case PopupType.GameOver:   return PopupAnim.Bounce;
+            default:                   return PopupAnim.Fade;
         }
     }
 }
