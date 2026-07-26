@@ -4,35 +4,34 @@ using UnityEngine;
 /// <summary>
 /// Trung tâm Gameplay: giữ điểm số + trạng thái game.
 /// Trạng thái: Waiting (chờ tap) -> Playing (đang chơi) -> GameOver (đã chết).
-/// Bird và PipeSpawner đọc trạng thái này để biết có được hoạt động chưa.
 /// </summary>
 public class LogicScript : MonoBehaviour
 {
     public enum GameState { Waiting, Playing, GameOver }
 
-    // Trạng thái hiện tại. Bắt đầu ở Waiting (màn Tap to Start).
     public GameState State { get; private set; } = GameState.Waiting;
-
-    // Tiện cho script khác hỏi nhanh "đang chơi không?"
     public bool IsPlaying => State == GameState.Playing;
 
     [Header("Score")]
     public int PlayerScore;
     public TMP_Text ScoreText;
 
-    [Header("Game Over (tạm thời - sẽ đổi sang UIManager popup)")]
-    public GameObject GameOverScreen;
-
-    // Cờ chống gọi GameOver nhiều lần.
     private bool isGameOverTriggered = false;
+    private float playTime = 0f;   // đếm thời gian từ lúc bắt đầu chơi
 
     // ==================== TRẠNG THÁI ====================
 
-    /// <summary> Tap to Start gọi khi người chơi tap lần đầu. </summary>
     public void StartPlaying()
     {
-        if (State != GameState.Waiting) return;   // chỉ chuyển từ Waiting
+        if (State != GameState.Waiting) return;
         State = GameState.Playing;
+    }
+
+    private void Update()
+    {
+        // Đếm thời gian lượt chơi khi đang Playing (để lưu vào record).
+        if (State == GameState.Playing)
+            playTime += Time.deltaTime;
     }
 
     // ==================== ĐIỂM SỐ ====================
@@ -52,15 +51,17 @@ public class LogicScript : MonoBehaviour
 
     public void GameOver()
     {
-        // Chỉ chạy 1 lần dù Bird có báo va chạm nhiều lần.
         if (isGameOverTriggered) return;
         isGameOverTriggered = true;
 
         State = GameState.GameOver;
 
-        // Tạm thời bật màn hình cũ. Bước sau đổi sang UIManager.OpenPopup(GameOver)
-        // và gọi SaveManager.SaveRun(...) để lưu điểm.
-        if (GameOverScreen != null)
-            GameOverScreen.SetActive(true);
+        // Lưu kết quả lượt chơi (điểm + thời gian), cập nhật high score.
+        if (SaveManager.Instance != null)
+            SaveManager.Instance.SaveRun(PlayerScore, playTime);
+
+        // Mở popup Game Over qua UIManager.
+        if (UIManager.Instance != null)
+            UIManager.Instance.OpenPopup(PopupType.GameOver);
     }
 }

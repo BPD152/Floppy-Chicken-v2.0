@@ -652,6 +652,7 @@ GameObject:
   - component: {fileID: 1056662534958955821}
   - component: {fileID: 6646430983708292373}
   - component: {fileID: 3334478165479553673}
+  - component: {fileID: 5823444050855789996}
   m_Layer: 5
   m_Name: GameOverPopUp_Panel
   m_TagString: Untagged
@@ -721,6 +722,22 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &5823444050855789996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5532221952518053431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b75a9658ec8746641b24f1b08516925c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreText: {fileID: 7706212756405874143}
+  bestScoreText: {fileID: 1104247459444744082}
+  btnPlayAgain: {fileID: 9007124774628870713}
+  btnHome: {fileID: 2280438033674993776}
 --- !u!1 &5968222812055277354
 GameObject:
   m_ObjectHideFlags: 0
