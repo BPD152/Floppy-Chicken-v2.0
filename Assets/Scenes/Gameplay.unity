@@ -220,9 +220,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed0de4b2e311d8a4ca51d981f8798d0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveSpeed: 0.25
-  EndX: -6
-  RespawnX: 6
 --- !u!114 &340704060
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -904,6 +901,37 @@ Transform:
   - {fileID: 1492494788}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &913043959
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 913043960}
+  m_Layer: 0
+  m_Name: PipeContainer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &913043960
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 913043959}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.40006, y: 2.24761, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &920552527
 GameObject:
   m_ObjectHideFlags: 0
@@ -930,12 +958,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 920552527}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1d6f744571d42c478873b658181223a, type: 3}
+  m_Script: {fileID: 11500000, guid: d7235c80a045ad34b970b79fdf2d14a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Item: {fileID: 7255945679965226613, guid: 84c88f822b3fee549b4696d35e1e71e5, type: 3}
   SpawnRate: 4
   Offset: 1.2
+  pipeContainer: {fileID: 913043960}
 --- !u!4 &920552529
 Transform:
   m_ObjectHideFlags: 0
@@ -977,16 +1006,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1130585438}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 38bed5635e876664083c08ed36ad13af, type: 3}
+  m_Script: {fileID: 11500000, guid: 9d7a16e67b811f14881d568809ea312f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerScore: 0
   ScoreText: {fileID: 508607652}
   GameOverScreen: {fileID: 0}
-  ScoreCountUI: {fileID: 508607651}
-  ScoreLogText: {fileID: 0}
-  ShakeDuration: 0.2
-  ShakeMagnitude: 0.15
 --- !u!4 &1130585440
 Transform:
   m_ObjectHideFlags: 0
@@ -1136,9 +1161,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed0de4b2e311d8a4ca51d981f8798d0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveSpeed: 0.1
-  EndX: -6
-  RespawnX: 6
 --- !u!114 &1372021262
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1253,9 +1275,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed0de4b2e311d8a4ca51d981f8798d0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveSpeed: 0.25
-  EndX: -6
-  RespawnX: 6
 --- !u!114 &1492494791
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1413,7 +1432,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1529673289}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8625fda699d5f4a4cbc7474cdd736dc6, type: 3}
+  m_Script: {fileID: 11500000, guid: 2dee8a7b6e9135d4b933b6b9b169b0e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   JumpForce: 8
@@ -1422,10 +1441,8 @@ MonoBehaviour:
   DownFaceSpeed: 150
   UpFaceSpeed: 200
   Rigidbody: {fileID: 1529673292}
-  FallGravity: 20
-  MaxFallSpeed: 15
-  OffscreenViewportY: -0.15
-  Logic: {fileID: 1130585439}
+  HoverAmplitude: 0.25
+  HoverFrequency: 2
 --- !u!70 &1529673291
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -1900,9 +1917,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed0de4b2e311d8a4ca51d981f8798d0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveSpeed: 0.15
-  EndX: -6
-  RespawnX: 6
 --- !u!114 &1940838311
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2017,9 +2031,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed0de4b2e311d8a4ca51d981f8798d0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveSpeed: 0.1
-  EndX: -6
-  RespawnX: 6
 --- !u!114 &1970447567
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2134,9 +2145,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed0de4b2e311d8a4ca51d981f8798d0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveSpeed: 0.15
-  EndX: -6
-  RespawnX: 6
 --- !u!114 &1971062946
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2192,6 +2200,7 @@ SceneRoots:
   - {fileID: 519420032}
   - {fileID: 1529673294}
   - {fileID: 920552529}
+  - {fileID: 913043960}
   - {fileID: 1575792593}
   - {fileID: 883380796}
   - {fileID: 1276844181}

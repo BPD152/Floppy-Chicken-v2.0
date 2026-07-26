@@ -88,10 +88,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 2178250513045640943}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0984bcd469c17840833aec4ef4d3d27, type: 3}
+  m_Script: {fileID: 11500000, guid: c5ef90ed9e3dbe84b9c710a4e17eac8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Logic: {fileID: 0}
 --- !u!1 &6754149469232219835
 GameObject:
   m_ObjectHideFlags: 0
@@ -105,7 +104,7 @@ GameObject:
   - component: {fileID: 1830449571114427665}
   m_Layer: 0
   m_Name: Bot Pipe
-  m_TagString: Untagged
+  m_TagString: Pipe
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -270,7 +269,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7255945679965226613}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 14c670536d5ed924ca77e7ca5fa6b281, type: 3}
+  m_Script: {fileID: 11500000, guid: ff2f472f0c6d0314888cd49dd7205d28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   MoveSpeed: 1
@@ -288,7 +287,7 @@ GameObject:
   - component: {fileID: 5148029128629134459}
   m_Layer: 0
   m_Name: Top Pipe
-  m_TagString: Untagged
+  m_TagString: Pipe
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
