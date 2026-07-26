@@ -14,7 +14,8 @@ public enum PopupType
 /// Sinh & huy popup vao PopupContainer. Moi luc chi 1 popup.
 /// Overlay den dung chung: bat khi co popup, tat khi dong.
 /// Overlay phai nam TREN PopupContainer trong Hierarchy de popup ve de len overlay.
-/// UIManager quyet dinh popup nao dung animation nao (xem GetAnim).
+/// UIManager quyet dinh popup nao dung animation nao (xem GetAnim),
+/// va popup nao cho phep click overlay de dong (xem CanCloseByOverlay).
 /// </summary>
 public class UIManager : Singleton<UIManager>
 {
@@ -32,6 +33,9 @@ public class UIManager : Singleton<UIManager>
 
     // Kieu animation cua popup dang mo - nho de luc dong dung dung kieu.
     private PopupAnim currentAnim;
+
+    // Loai popup dang mo - nho de biet co cho dong bang overlay khong.
+    private PopupType currentType;
 
     protected override void Awake()
     {
@@ -64,6 +68,7 @@ public class UIManager : Singleton<UIManager>
         overlay.SetActive(true);                             // bat nen toi
         currentPopup = Instantiate(prefab, popupContainer);  // sinh popup vao container
         currentAnim = GetAnim(type);                         // chot kieu animation
+        currentType = type;                                  // nho loai popup dang mo
 
         var animator = currentPopup.GetComponent<PopupAnimator>();
         if (animator == null)
@@ -103,6 +108,20 @@ public class UIManager : Singleton<UIManager>
         }
     }
 
+    /// <summary>
+    /// Nut Overlay goi ham NAY (thay vi goi thang ClosePopup).
+    /// Chi dong khi popup hien tai cho phep dong bang overlay.
+    /// </summary>
+    public void OnOverlayClicked()
+    {
+        if (currentPopup == null) return;
+
+        // Popup khong cho dong bang overlay (VD Game Over, TapToStart) -> bo qua.
+        if (!CanCloseByOverlay(currentType)) return;
+
+        ClosePopup();
+    }
+
     // ==================== NOI BO ====================
 
     // Anh xa PopupType -> prefab tuong ung.
@@ -128,4 +147,34 @@ public class UIManager : Singleton<UIManager>
             default:                   return PopupAnim.Fade;
         }
     }
+
+    // Popup nao cho phep click overlay de dong.
+    private bool CanCloseByOverlay(PopupType type)
+    {
+        switch (type)
+        {
+            case PopupType.Setting:    return true;   // click overlay -> dong
+            case PopupType.TapToStart: return false;  // khong dong bang overlay
+            case PopupType.GameOver:   return false;  // khong dong bang overlay
+            default:                   return true;
+        }
+    }// ==================== THÊM vào UIManager.cs ====================
+// Dán method này trong class UIManager (ví dụ ngay dưới ClosePopup()).
+
+/// <summary>
+/// Đóng popup NGAY LẬP TỨC, không animation. Dùng khi chuyển scene
+/// (Play Again / Home) - không cần chờ hiệu ứng vì scene sắp đổi.
+/// </summary>
+public void CloseNow()
+{
+    if (currentPopup != null)
+    {
+        LeanTween.cancel(currentPopup);
+        Destroy(currentPopup);
+        currentPopup = null;
+    }
+
+    if (overlay != null)
+        overlay.SetActive(false);
+}
 }

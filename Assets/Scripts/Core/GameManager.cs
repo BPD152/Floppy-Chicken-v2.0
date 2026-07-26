@@ -39,4 +39,18 @@ public class GameManager : Singleton<GameManager>
         Time.timeScale = 1f;            // Reset phong khi scene truoc dang pause/gameover
         SceneManager.LoadScene(loadingSceneName);
     }
+    // ==================== THÊM vào GameManager.cs ====================
+// Dán method này trong class GameManager (ví dụ dưới LoadHome()).
+// Cần using UnityEngine.SceneManagement; (GameManager đã có sẵn).
+
+/// <summary>
+/// Load lại Gameplay THẲNG, KHÔNG qua Loading Scene.
+/// Dùng cho nút Play Again -> chơi lại ngay, không chờ màn loading.
+/// Vẫn reset Time.timeScale phòng khi scene trước đang pause.
+/// </summary>
+public void ReloadGameplayDirect()
+{
+    Time.timeScale = 1f;
+    SceneManager.LoadScene(gameplaySceneName);
+}
 }
