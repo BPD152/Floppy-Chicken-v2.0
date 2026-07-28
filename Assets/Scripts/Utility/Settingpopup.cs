@@ -45,7 +45,6 @@ public class SettingPopup : MonoBehaviour
     {
         // Đọc volume đã lưu từ SaveManager (nó có sẵn LoadSettings trả về music + sfx).
         SaveManager.Instance.LoadSettings(out float music, out float sfx);
-
         // SetValueWithoutNotify: gán giá trị mà KHÔNG kích onValueChanged.
         // Nếu không, lúc mở popup slider sẽ tự gọi lại SetXxxVolume -> lưu thừa.
         if (sliderMusic != null) sliderMusic.SetValueWithoutNotify(music);

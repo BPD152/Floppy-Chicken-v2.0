@@ -129,7 +129,6 @@ GameObject:
   m_Component:
   - component: {fileID: 122731643}
   - component: {fileID: 122731645}
-  - component: {fileID: 122731644}
   - component: {fileID: 122731646}
   m_Layer: 0
   m_Name: Cloud
@@ -153,21 +152,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 948358939}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &122731644
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 122731642}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed0de4b2e311d8a4ca51d981f8798d0e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MoveSpeed: 0.15
-  EndX: -3.8
-  RespawnX: 5
 --- !u!212 &122731645
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -279,7 +263,6 @@ GameObject:
   m_Component:
   - component: {fileID: 301350991}
   - component: {fileID: 301350993}
-  - component: {fileID: 301350992}
   - component: {fileID: 301350994}
   m_Layer: 0
   m_Name: Cloud Bot
@@ -303,21 +286,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1542445116}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &301350992
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 301350990}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed0de4b2e311d8a4ca51d981f8798d0e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MoveSpeed: 0.1
-  EndX: -6
-  RespawnX: 6
 --- !u!212 &301350993
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -665,7 +633,6 @@ GameObject:
   m_Component:
   - component: {fileID: 487454258}
   - component: {fileID: 487454260}
-  - component: {fileID: 487454259}
   - component: {fileID: 487454261}
   m_Layer: 0
   m_Name: Cloud
@@ -689,21 +656,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 948358939}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &487454259
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 487454257}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed0de4b2e311d8a4ca51d981f8798d0e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MoveSpeed: 0.15
-  EndX: -3.8
-  RespawnX: 5
 --- !u!212 &487454260
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -782,7 +734,6 @@ GameObject:
   m_Component:
   - component: {fileID: 612859029}
   - component: {fileID: 612859031}
-  - component: {fileID: 612859030}
   - component: {fileID: 612859032}
   m_Layer: 0
   m_Name: Cloud
@@ -806,21 +757,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 948358939}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &612859030
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 612859028}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed0de4b2e311d8a4ca51d981f8798d0e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MoveSpeed: 0.15
-  EndX: -3.8
-  RespawnX: 5
 --- !u!212 &612859031
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1255,7 +1191,6 @@ GameObject:
   m_Component:
   - component: {fileID: 803392063}
   - component: {fileID: 803392065}
-  - component: {fileID: 803392064}
   - component: {fileID: 803392066}
   m_Layer: 0
   m_Name: Cloud Bot (1)
@@ -1279,21 +1214,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1542445116}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &803392064
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 803392062}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed0de4b2e311d8a4ca51d981f8798d0e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MoveSpeed: 0.1
-  EndX: -6
-  RespawnX: 6
 --- !u!212 &803392065
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1407,7 +1327,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1146174945}
   - component: {fileID: 1146174948}
-  - component: {fileID: 1146174947}
   - component: {fileID: 1146174946}
   m_Layer: 0
   m_Name: Cloud (1)
@@ -1444,18 +1363,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MoveSpeed: 0.15
---- !u!114 &1146174947
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1146174944}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed0de4b2e311d8a4ca51d981f8798d0e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!212 &1146174948
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1598,7 +1505,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1660035784}
   - component: {fileID: 1660035786}
-  - component: {fileID: 1660035785}
   - component: {fileID: 1660035787}
   m_Layer: 0
   m_Name: Mountain
@@ -1622,21 +1528,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1722019152}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1660035785
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1660035783}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed0de4b2e311d8a4ca51d981f8798d0e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MoveSpeed: 0.15
-  EndX: -6
-  RespawnX: 6
 --- !u!212 &1660035786
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1715,7 +1606,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1687301836}
   - component: {fileID: 1687301838}
-  - component: {fileID: 1687301837}
   - component: {fileID: 1687301839}
   m_Layer: 0
   m_Name: Sea Surface
@@ -1739,21 +1629,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 153116054}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1687301837
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1687301835}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed0de4b2e311d8a4ca51d981f8798d0e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MoveSpeed: 0.25
-  EndX: -6
-  RespawnX: 6
 --- !u!212 &1687301838
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1969,7 +1844,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1843714300}
   - component: {fileID: 1843714302}
-  - component: {fileID: 1843714301}
   - component: {fileID: 1843714303}
   m_Layer: 0
   m_Name: Mountain (1)
@@ -1993,21 +1867,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1722019152}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1843714301
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1843714299}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed0de4b2e311d8a4ca51d981f8798d0e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MoveSpeed: 0.15
-  EndX: -6
-  RespawnX: 6
 --- !u!212 &1843714302
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2299,7 +2158,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2079231743}
   - component: {fileID: 2079231745}
-  - component: {fileID: 2079231744}
   - component: {fileID: 2079231746}
   m_Layer: 0
   m_Name: Sea Surface (1)
@@ -2323,21 +2181,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 153116054}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2079231744
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2079231742}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed0de4b2e311d8a4ca51d981f8798d0e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MoveSpeed: 0.25
-  EndX: -6
-  RespawnX: 6
 --- !u!212 &2079231745
 SpriteRenderer:
   m_ObjectHideFlags: 0

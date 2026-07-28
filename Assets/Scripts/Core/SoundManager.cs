@@ -1,26 +1,28 @@
 using UnityEngine;
 
 /// <summary>
-/// Quan ly 2 tang am thanh: Music / SFX.
-/// - Music: nhac nen (loop).
-/// - SFX: tat ca am thanh con lai (flap, point, hit, die).
-/// - Doc volume da luu tu SaveManager luc khoi dong.
-/// - Chinh volume -> luu lai qua SaveManager.
+/// Quan ly am thanh: Music / SFX (SFX gom ca flap, point, hit, die va tieng song).
+/// - Music: nhac nen (loop) - source rieng.
+/// - SFX: tat ca am thanh con lai + tieng song ambient - dung chung 1 source.
+/// - Doc volume da luu tu SaveManager luc khoi dong, chinh volume -> luu lai.
 /// </summary>
 public class SoundManager : Singleton<SoundManager>
 {
-    [Header("Audio Sources")]
+    [Header("Music")]
     [SerializeField] private AudioSource musicSource;
+    [SerializeField] private AudioClip backgroundMusic;
+
+    [Header("SFX (gom ca Ambient)")]
     [SerializeField] private AudioSource sfxSource;
+    [SerializeField] private AudioClip[] flapClips;
+    [SerializeField] private AudioClip[] pointClips;
+    [SerializeField] private AudioClip hitClip;
+    [SerializeField] private AudioClip dieClip;
 
-    [Header("Music Clip")]
-    [SerializeField] private AudioClip musicClip;     // Nhac nen (loop)
-
-    [Header("SFX Clips")]
-    [SerializeField] private AudioClip[] flapClips;   // Nhieu tieng vo canh -> random
-    [SerializeField] private AudioClip[] pointClips;  // Nhieu tieng ghi diem -> random
-    [SerializeField] private AudioClip hitClip;       // Tieng va cham
-    [SerializeField] private AudioClip dieClip;       // Tieng chet
+    [Header("Ambient (Wave)")]
+    [SerializeField] private AudioClip[] waveClips;
+    [SerializeField] private float waveInterval = 5f;
+    private float waveTimer;
 
     protected override void Awake()
     {
@@ -29,38 +31,40 @@ public class SoundManager : Singleton<SoundManager>
         // Doc volume da luu, ap vao 2 source
         SaveManager.Instance.LoadSettings(out float music, out float sfx);
         musicSource.volume = music;
-        sfxSource.volume = sfx;
+        sfxSource.volume   = sfx;
     }
 
     private void Start()
     {
-        // Phat nhac nen ngay khi vao game
         PlayMusic();
+        waveTimer = waveInterval;
+    }
+
+    private void Update()
+    {
+        // Dem nguoc de phat tieng song ngau nhien
+        waveTimer -= Time.deltaTime;
+        if (waveTimer <= 0f)
+        {
+            PlayRandomWave();
+            waveTimer = waveInterval;
+        }
     }
 
     // ==================== NHAC NEN ====================
 
     public void PlayMusic()
     {
-        if (musicClip == null) return;
-        musicSource.clip = musicClip;
+        if (backgroundMusic == null) return;
+        musicSource.clip = backgroundMusic;
         musicSource.loop = true;
         musicSource.Play();
     }
 
     // ==================== SFX ====================
 
-    /// <summary> Vo canh: phat 1 tieng ngau nhien trong flapClips. </summary>
-    public void PlayRandomFlap()
-    {
-        PlayRandom(flapClips);
-    }
-
-    /// <summary> Ghi diem: phat 1 tieng ngau nhien trong pointClips. </summary>
-    public void PlayRandomPoint()
-    {
-        PlayRandom(pointClips);
-    }
+    public void PlayRandomFlap()  => PlayRandom(flapClips);
+    public void PlayRandomPoint() => PlayRandom(pointClips);
 
     public void PlayHit()
     {
@@ -72,12 +76,20 @@ public class SoundManager : Singleton<SoundManager>
         if (dieClip != null) sfxSource.PlayOneShot(dieClip);
     }
 
-    // Chon ngau nhien 1 clip trong mang roi phat.
     private void PlayRandom(AudioClip[] clips)
     {
         if (clips == null || clips.Length == 0) return;
-        int i = Random.Range(0, clips.Length);   // 0 -> length-1
+        int i = Random.Range(0, clips.Length);
         sfxSource.PlayOneShot(clips[i]);
+    }
+
+    // ==================== AMBIENT (WAVE) - dung chung sfxSource ====================
+
+    private void PlayRandomWave()
+    {
+        if (waveClips == null || waveClips.Length == 0) return;
+        int i = Random.Range(0, waveClips.Length);
+        sfxSource.PlayOneShot(waveClips[i]);
     }
 
     // ==================== SETTER VOLUME ====================

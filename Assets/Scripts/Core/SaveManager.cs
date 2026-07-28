@@ -88,24 +88,16 @@ public class SaveManager : Singleton<SaveManager>
 
     // ==================== API: SETTINGS (VOLUME) ====================
 
-    /// <summary>
-    /// Goi khi nguoi choi chinh volume trong popup Setting.
-    /// SoundManager goi ham nay de luu 2 muc am luong: Music / SFX.
-    /// </summary>
     public void SaveSettings(float music, float sfx)
     {
-        _data.musicVolume = music;
-        _data.sfxVolume = sfx;
-        Save();
+    _data.musicVolume = music;
+    _data.sfxVolume   = sfx;
+    Save();
     }
 
-    /// <summary>
-    /// SoundManager goi luc khoi dong de doc lai volume da luu.
-    /// Tra ve 2 gia tri qua tham so 'out' (khong can tao class rieng).
-    /// </summary>
     public void LoadSettings(out float music, out float sfx)
     {
-        music = _data.musicVolume;
-        sfx = _data.sfxVolume;
+    music = _data.musicVolume;
+    sfx   = _data.sfxVolume;
     }
 }
