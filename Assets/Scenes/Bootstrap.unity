@@ -617,9 +617,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: fe53761cc4c9a814987f4900932c58ed, type: 3}
   - {fileID: 8300000, guid: 74fd570d275d2ad4c806268a42361c60, type: 3}
   - {fileID: 8300000, guid: 223a00e739c72e94082eb572657d3fbc, type: 3}
-  hitClip: {fileID: 8300000, guid: 6dc21783d570b81458f5688e1f1cd093, type: 3}
-  dieClip: {fileID: 8300000, guid: cbab109fe0a2c594ea06b43a0ba5b2d3, type: 3}
-  clickClip: {fileID: 8300000, guid: fe53761cc4c9a814987f4900932c58ed, type: 3}
+  hitClip: {fileID: 8300000, guid: de8777a3a7a461645be2eb678a087eac, type: 3}
+  dieClip: {fileID: 8300000, guid: 6c0c1a718fcb64d4ab7d12933a03e92c, type: 3}
+  clickClip: {fileID: 8300000, guid: cd4fc5720c9ba034bbd2bf193b01f722, type: 3}
   waveClips:
   - {fileID: 8300000, guid: 15d6a213ada66e949b59c461dc6dde4c, type: 3}
   - {fileID: 8300000, guid: ebbc41ca9843d174ea7959db41951dab, type: 3}
