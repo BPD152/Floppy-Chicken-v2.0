@@ -7,17 +7,22 @@ using UnityEngine;
 ///  - Mỗi frame kiểm tra Logic.IsPlaying, chỉ chạy timer khi đang chơi.
 ///  - Random.Range truyền đúng thứ tự (min, max).
 ///  - Pipe spawn ra được gom vào container (nếu có) cho Hierarchy gọn.
+///  - Pipe ĐẦU TIÊN dùng FirstSpawnDelay riêng (chỉnh ở Inspector), các pipe sau dùng SpawnRate.
 /// </summary>
 public class PipeSpawner : MonoBehaviour
 {
     public GameObject Item;        // Pipe prefab
-    public float SpawnRate;        // giây giữa 2 lần spawn
+    public float SpawnRate;        // giây giữa 2 lần spawn (từ pipe thứ 2 trở đi)
     public float Offset;           // biên độ ngẫu nhiên độ cao khe
+
+    [Tooltip("Thời gian chờ trước pipe ĐẦU TIÊN (giây). Để nhỏ hơn SpawnRate nếu muốn pipe đầu đến sớm.")]
+    public float FirstSpawnDelay = 0.8f;
 
     [Tooltip("Object rỗng gom các Pipe (tùy chọn). Bỏ trống cũng được.")]
     public Transform pipeContainer;
 
     private float timer = 0f;
+    private bool firstPipeSpawned = false;
     private LogicScript logic;
 
     private void Start()
@@ -33,9 +38,14 @@ public class PipeSpawner : MonoBehaviour
         if (logic == null || !logic.IsPlaying) return;
 
         timer += Time.deltaTime;
-        if (timer >= SpawnRate)
+
+        // Pipe đầu dùng FirstSpawnDelay; các pipe sau dùng SpawnRate.
+        float threshold = firstPipeSpawned ? SpawnRate : FirstSpawnDelay;
+
+        if (timer >= threshold)
         {
             SpawnPipe();
+            firstPipeSpawned = true;
             timer = 0f;
         }
     }

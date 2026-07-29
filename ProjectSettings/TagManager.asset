@@ -7,6 +7,8 @@ TagManager:
   - Logic
   - Pipe
   - Bird
+  - Ground
+  - Ceiling
   layers:
   - Default
   - TransparentFX
@@ -61,6 +63,9 @@ TagManager:
     locked: 0
   - name: Bird
     uniqueID: 157397225
+    locked: 0
+  - name: Water_Visual
+    uniqueID: 3579591965
     locked: 0
   m_RenderingLayers:
   - Default

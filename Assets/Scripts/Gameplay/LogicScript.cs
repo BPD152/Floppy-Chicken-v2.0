@@ -16,6 +16,10 @@ public class LogicScript : MonoBehaviour
     public int PlayerScore;
     public TMP_Text ScoreText;
 
+    [Header("Effects")]
+    [Tooltip("Flash trắng toàn màn hình khi die. Kéo object ScreenFlash vào đây. Bỏ trống vẫn chạy.")]
+    public ScreenFlash screenFlash;
+
     private bool isGameOverTriggered = false;
     private float playTime = 0f;   // đếm thời gian từ lúc bắt đầu chơi
 
@@ -55,6 +59,10 @@ public class LogicScript : MonoBehaviour
         isGameOverTriggered = true;
 
         State = GameState.GameOver;
+
+        // Flash trắng toàn màn hình.
+        if (screenFlash != null)
+            screenFlash.Flash();
 
         // Lưu kết quả lượt chơi (điểm + thời gian), cập nhật high score.
         if (SaveManager.Instance != null)

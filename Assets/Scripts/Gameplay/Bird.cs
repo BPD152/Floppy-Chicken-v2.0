@@ -2,12 +2,10 @@ using UnityEngine;
 
 /// <summary>
 /// Bird: lơ lửng nhấp nhô lúc chờ (Waiting) -> nhảy/xoay/rơi khi chơi (Playing).
-/// Sửa so với bản cũ:
-///  - Waiting: tắt trọng lực, dao động lên xuống nhẹ (sin). Không nhận input.
-///  - Tap đầu tiên do Tap to Start xử lý (gọi Logic.StartPlaying), KHÔNG làm Bird nhảy.
-///  - Playing: nhận input nhảy như cũ.
-///  - Va chạm lọc tag: Pipe / Ground -> chết; Ceiling -> bỏ qua.
-///  - Cache Logic ở Start.
+/// Va chạm lọc tag:
+///  - Pipe   -> tiếng Hit  + chết
+///  - Ground -> tiếng Die  + chết
+///  - Ceiling-> bỏ qua (chỉ chặn, không chết, không tiếng)
 /// </summary>
 public class Bird : MonoBehaviour
 {
@@ -83,7 +81,7 @@ public class Bird : MonoBehaviour
             Rigidbody.linearVelocityY = JumpForce;
             TargetAngle = UpFace;
             AngleSpeed = UpFaceSpeed;
-            SoundManager.Instance.PlayRandomFlap();
+            SoundManager.Instance?.PlayRandomFlap();
         }
         else if (Rigidbody.linearVelocityY < 0)
         {
@@ -100,14 +98,22 @@ public class Bird : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        // Chạm trần thì chỉ bị chặn, không chết.
+        // Chạm trần thì chỉ bị chặn, không chết, không tiếng.
         if (collision.collider.CompareTag("Ceiling")) return;
 
-        // Chạm Pipe hoặc Ground -> chết.
-        if (collision.collider.CompareTag("Pipe") || collision.collider.CompareTag("Ground"))
+        // Chạm Pipe -> tiếng Hit rồi chết.
+        if (collision.collider.CompareTag("Pipe"))
         {
-            if (logic != null)
-                logic.GameOver();
+            SoundManager.Instance?.PlayHit();
+            if (logic != null) logic.GameOver();
+            return;
+        }
+
+        // Chạm Ground -> tiếng Die rồi chết.
+        if (collision.collider.CompareTag("Ground"))
+        {
+            SoundManager.Instance?.PlayDie();
+            if (logic != null) logic.GameOver();
         }
     }
 

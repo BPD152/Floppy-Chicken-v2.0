@@ -1,7 +1,7 @@
 using UnityEngine;
 
 /// <summary>
-/// Quan ly am thanh: Music / SFX (SFX gom ca flap, point, hit, die va tieng song).
+/// Quan ly am thanh: Music / SFX (SFX gom ca flap, point, hit, die, click va tieng song).
 /// - Music: nhac nen (loop) - source rieng.
 /// - SFX: tat ca am thanh con lai + tieng song ambient - dung chung 1 source.
 /// - Doc volume da luu tu SaveManager luc khoi dong, chinh volume -> luu lai.
@@ -18,6 +18,7 @@ public class SoundManager : Singleton<SoundManager>
     [SerializeField] private AudioClip[] pointClips;
     [SerializeField] private AudioClip hitClip;
     [SerializeField] private AudioClip dieClip;
+    [SerializeField] private AudioClip clickClip;   // tieng click button
 
     [Header("Ambient (Wave)")]
     [SerializeField] private AudioClip[] waveClips;
@@ -74,6 +75,12 @@ public class SoundManager : Singleton<SoundManager>
     public void PlayDie()
     {
         if (dieClip != null) sfxSource.PlayOneShot(dieClip);
+    }
+
+    // Tieng click khi bam button.
+    public void PlayClick()
+    {
+        if (clickClip != null) sfxSource.PlayOneShot(clickClip);
     }
 
     private void PlayRandom(AudioClip[] clips)
