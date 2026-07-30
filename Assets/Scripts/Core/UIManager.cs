@@ -7,7 +7,8 @@ public enum PopupType
 {
     Setting,
     TapToStart,
-    GameOver
+    GameOver,
+    Pause
 }
 
 /// <summary>
@@ -23,6 +24,7 @@ public class UIManager : Singleton<UIManager>
     [SerializeField] private GameObject settingPopupPrefab;
     [SerializeField] private GameObject tapToStartPopupPrefab;
     [SerializeField] private GameObject gameOverPopupPrefab;
+    [SerializeField] private GameObject pausePopupPrefab;   // MOI: prefab Popup_Pause
 
     [Header("Scene References")]
     [SerializeField] private GameObject overlay;         // tam den dung chung
@@ -109,6 +111,23 @@ public class UIManager : Singleton<UIManager>
     }
 
     /// <summary>
+    /// Dong popup NGAY LAP TUC, khong animation. Dung khi chuyen scene
+    /// (Play Again / Home) - khong can cho hieu ung vi scene sap doi.
+    /// </summary>
+    public void CloseNow()
+    {
+        if (currentPopup != null)
+        {
+            LeanTween.cancel(currentPopup);
+            Destroy(currentPopup);
+            currentPopup = null;
+        }
+
+        if (overlay != null)
+            overlay.SetActive(false);
+    }
+
+    /// <summary>
     /// Nut Overlay goi ham NAY (thay vi goi thang ClosePopup).
     /// Chi dong khi popup hien tai cho phep dong bang overlay.
     /// </summary>
@@ -116,7 +135,7 @@ public class UIManager : Singleton<UIManager>
     {
         if (currentPopup == null) return;
 
-        // Popup khong cho dong bang overlay (VD Game Over, TapToStart) -> bo qua.
+        // Popup khong cho dong bang overlay (VD Game Over, TapToStart, Pause) -> bo qua.
         if (!CanCloseByOverlay(currentType)) return;
 
         ClosePopup();
@@ -132,6 +151,7 @@ public class UIManager : Singleton<UIManager>
             case PopupType.Setting:    return settingPopupPrefab;
             case PopupType.TapToStart: return tapToStartPopupPrefab;
             case PopupType.GameOver:   return gameOverPopupPrefab;
+            case PopupType.Pause:      return pausePopupPrefab;   // MOI
             default:                   return null;
         }
     }
@@ -144,6 +164,7 @@ public class UIManager : Singleton<UIManager>
             case PopupType.Setting:    return PopupAnim.Bounce;
             case PopupType.TapToStart: return PopupAnim.Fade;
             case PopupType.GameOver:   return PopupAnim.Bounce;
+            case PopupType.Pause:      return PopupAnim.Bounce;   // MOI
             default:                   return PopupAnim.Fade;
         }
     }
@@ -156,25 +177,8 @@ public class UIManager : Singleton<UIManager>
             case PopupType.Setting:    return true;   // click overlay -> dong
             case PopupType.TapToStart: return false;  // khong dong bang overlay
             case PopupType.GameOver:   return false;  // khong dong bang overlay
+            case PopupType.Pause:      return false;  // MOI: khong thoat pause bang click overlay
             default:                   return true;
         }
-    }// ==================== THÊM vào UIManager.cs ====================
-// Dán method này trong class UIManager (ví dụ ngay dưới ClosePopup()).
-
-/// <summary>
-/// Đóng popup NGAY LẬP TỨC, không animation. Dùng khi chuyển scene
-/// (Play Again / Home) - không cần chờ hiệu ứng vì scene sắp đổi.
-/// </summary>
-public void CloseNow()
-{
-    if (currentPopup != null)
-    {
-        LeanTween.cancel(currentPopup);
-        Destroy(currentPopup);
-        currentPopup = null;
     }
-
-    if (overlay != null)
-        overlay.SetActive(false);
-}
 }

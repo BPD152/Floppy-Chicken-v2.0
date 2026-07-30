@@ -3,11 +3,11 @@ using UnityEngine;
 
 /// <summary>
 /// Trung tâm Gameplay: giữ điểm số + trạng thái game.
-/// Trạng thái: Waiting (chờ tap) -> Playing (đang chơi) -> GameOver (đã chết).
+/// Trạng thái: Waiting (chờ tap) -> Playing (đang chơi) -> Paused (tạm dừng) -> GameOver (đã chết).
 /// </summary>
 public class LogicScript : MonoBehaviour
 {
-    public enum GameState { Waiting, Playing, GameOver }
+    public enum GameState { Waiting, Playing, Paused, GameOver }
 
     public GameState State { get; private set; } = GameState.Waiting;
     public bool IsPlaying => State == GameState.Playing;
@@ -28,6 +28,25 @@ public class LogicScript : MonoBehaviour
     public void StartPlaying()
     {
         if (State != GameState.Waiting) return;
+        State = GameState.Playing;
+    }
+
+    // ==================== PAUSE ====================
+
+    public void PauseGame()
+    {
+        if (State != GameState.Playing) return;   // chỉ pause khi đang chơi
+        State = GameState.Paused;
+        Time.timeScale = 0f;                       // đóng băng pipe, background, physics
+
+        if (UIManager.Instance != null)
+            UIManager.Instance.OpenPopup(PopupType.Pause);
+    }
+
+    public void ResumeGame()
+    {
+        if (State != GameState.Paused) return;
+        Time.timeScale = 1f;
         State = GameState.Playing;
     }
 

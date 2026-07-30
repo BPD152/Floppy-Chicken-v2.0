@@ -558,6 +558,7 @@ MonoBehaviour:
   settingPopupPrefab: {fileID: 1707706681637054747, guid: 4c1dc82e55b7c4242a9b114170ad26bc, type: 3}
   tapToStartPopupPrefab: {fileID: 5940392632460091306, guid: 27598e1a5d590dd49b2633228d50d89e, type: 3}
   gameOverPopupPrefab: {fileID: 5532221952518053431, guid: 35b014e6b9df7de4f8f94e2a749b66a5, type: 3}
+  pausePopupPrefab: {fileID: 1707706681637054747, guid: 9891e16c14de3f447b9c34e3500b86df, type: 3}
   overlay: {fileID: 522882427}
   popupContainer: {fileID: 904845073}
 --- !u!1 &1298760727
